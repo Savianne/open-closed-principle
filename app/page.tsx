@@ -1,6 +1,12 @@
 import Image from "next/image";
 import styles from "./page.module.css";
-import { PrintInterviewForm } from "./components/printInterviewForm";
+// import { PrintInterviewForm } from "./components/printInterviewForm";
+//OCP Components
+import PrintInterviewForm from "./components/ocp/printIntervieQuestions";
+import BooleanTypeQuestion from "./components/ocp/questionTypes/BooleanType";
+import MultipleChoiceTypeQuestion from "./components/ocp/questionTypes/MultipleChoiceType";
+import TextTypeQuestion from "./components/ocp/questionTypes/TextType";
+import RangeTypeQuestion from "./components/ocp/questionTypes/RangeTypeQuestion";
 
 export default function Home() {
   return (
@@ -18,8 +24,8 @@ export default function Home() {
       <div className={styles.info}>
         <p>
           The Open-Closed Principle (OCP) was originally formulated by Bertrand Meyer, a Swiss computer scientist, in his 1988 
-          book "Object-Oriented Software Construction." Meyer's principle stated that software entities (classes, modules, functions, 
-          etc.) should be open for extension but closed for modification. This principle is part of the broader SOLID principles, 
+          book "Object-Oriented Software Construction." Meyer's principle stated that <i>software entities (classes, modules, functions, 
+          etc.) should be open for extension but closed for modification.</i> This principle is part of the broader SOLID principles, 
           which were later popularized by Robert C. Martin (also known as "Uncle Bob"), a software engineer and author, in the early 
           2000s.</p>
       </div>
@@ -40,7 +46,15 @@ export default function Home() {
         </ol>
       </div>
       <h1>Sample Interview Form</h1>
-      <PrintInterviewForm questions={ [
+      <PrintInterviewForm 
+      questions={[
+        <BooleanTypeQuestion description="Do you love WCST?"/>,
+        <MultipleChoiceTypeQuestion description="What is your most favorite language?" options={["Javascript", "C++", "C#", "Python"]}/>,
+        <TextTypeQuestion description="Describe your favorite JS feature"/>,
+        <TextTypeQuestion description="Tell me about your self" />,
+        <RangeTypeQuestion description="What is the minimum and maximum salary range in your country?"/>
+      ]}/>
+      {/* <PrintInterviewForm questions={ [
         {
             type: 'boolean',
             description: "Do you love WCST?",
@@ -62,7 +76,7 @@ export default function Home() {
           type: "range",
           description: 'What is the minimum and maximum salary range in your country?',
         }
-      ]}/>
+      ]}/> */}
     </main>
   );
 }

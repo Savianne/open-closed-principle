@@ -37,6 +37,10 @@
   line-height: 1.8;
 }
 
+.main > .info > p > i {
+  text-decoration: underline;
+}
+
 .main > .concept,
 .main > .benefits {
   display: flex;

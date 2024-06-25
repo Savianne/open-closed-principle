@@ -10,11 +10,11 @@ export const PrintInterviewForm: React.FC<{questions: IQuestions[]}> = ({questio
     return(
         <form id="interviewForm">
             {
-                questions.map(question => {
+                questions.map((question, i) => {
                     switch(question.type) {
                         case 'boolean': 
                             return(
-                                <div className="question-group">
+                                <div className="question-group" key={i}>
                                     <h3>{question.description}</h3>
                                     <input type="radio" name="true" checked={false} />
                                     <label>True</label><br></br>
@@ -24,14 +24,14 @@ export const PrintInterviewForm: React.FC<{questions: IQuestions[]}> = ({questio
                             );
                         case 'multiple-choice':
                             return(
-                                <div className="question-group">
+                                <div className="question-group" key={i}>
                                     <h3>{question.description}</h3>
                                     {
                                         question.options && question.options.map((option, index) => {
-                                            return(<>
+                                            return(<div key={index}>
                                                 <input type="radio" name="true" checked={false} />
                                                 <label>{option}</label><br></br>
-                                            </>
+                                            </div>
                                             )
                                         }) 
                                     }
@@ -39,22 +39,22 @@ export const PrintInterviewForm: React.FC<{questions: IQuestions[]}> = ({questio
                             )
                         case 'text':
                             return(
-                                <div className="question-group">
+                                <div className="question-group" key={i}>
                                     <h3>{question.description}</h3>
                                     <textarea placeholder="Anser here" />
                                 </div>
                             );
                         case 'range':
                             return(
-                                <div className="question-group">
+                                <div className="question-group" key={i}>
                                     <h3>{question.description}</h3>
                                     <label>Maximum</label><br></br>
-                                    <input /><br></br>
-                                    <label>Minimum</label><br></br>
-                                    <input />
+                                    <input type="number" /><br></br>
+                                    <label >Minimum</label><br></br>
+                                    <input type="number"/>
                                 </div>
                             )
-                    }
+                    }   
                 })
             }
         </form>
